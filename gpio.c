@@ -164,7 +164,35 @@
   */
 HAL_StatusTypeDef GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
 {
-  return HAL_ERROR;
+  if (GPIO_Init->Pin == 0) // Silly goose! We need a PIN!
+    return HAL_INCOMPLETE;
+  if (GPIO_Init->Mode > 0x1) // we only care about MODE_INPUT & MODE_OUTPUT
+    return HAL_ERROR;
+  if (GPIO_Init->Alternate != 0)
+    return HAL_ERROR;
+
+  char pinNumber = 0;
+
+  while (GPIO_Init->Pin) {
+    if (!(GPIO_Init->Pin & 0x1)) { // If not requested, don't enable
+      GPIO_Init->Pin  = GPIO_Init->Pin >> 1;
+      pinNumber++;
+      continue;
+    }
+
+    GPIOx->MODER      |= (((GPIO_Init->Mode  & 0x3) << (pinNumber*2)) 
+                          | ((GPIOx->MODER   & 0x3) << (pinNumber*2)));
+    GPIOx->PUPDR      |= ((GPIO_Init->Pull   & 0x3) << (pinNumber*2)) 
+                          | ((GPIOx->PUPDR   & 0x3) << (pinNumber*2));
+    if(GPIO_Init->Mode & GPIO_MODE != MODE_INPUT)
+      GPIOx->OSPEEDR  |= ((GPIO_Init->Speed  & 0x3) << (pinNumber*2))
+                          | ((GPIOx->OSPEEDR & 0x3) << (pinNumber*2));
+
+    GPIO_Init->Pin  = GPIO_Init->Pin >> 1; // prepare for next loop
+    pinNumber++; // prepare for next loop
+  }
+
+  return HAL_OK;
 }
 
 /**

@@ -47,14 +47,4 @@ typedef enum
   GPIO_PIN_SET
 }GPIO_PinState;
 
-/**
-  * @brief  Initialize the GPIOx peripheral according to the specified parameters in the GPIO_Init.
-  * @param  GPIOx where x can be (A..F) to select the GPIO peripheral for STM32F0 family
-  * @param  GPIO_Init pointer to a GPIO_InitTypeDef structure that contains
-  *         the configuration information for the specified GPIO peripheral.
-  * @retval Non-Zero on error
-  */
-HAL_StatusTypeDef startGPIO(GPIO_TypeDef *gpio, GPIO_InitTypeDef* gpio_init);
-HAL_StatusTypeDef invertGPIO_A5();
-
 #endif
