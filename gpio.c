@@ -126,7 +126,6 @@
   * @{
   */
 
-#define GPIO_NUMBER           16U
 /**
   * @}
   */

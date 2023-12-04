@@ -1,13 +1,5 @@
 #include "mock_hal.h"
 #include "gpio.h"
-#ifndef GPIO_NUMBER
-#define GPIO_NUMBER 16u
-#endif
-#define GPIO_OSPEEDER_OSPEEDR0           0x3ul
-#define GPIO_OTYPER_OT_0                 0x1ul
-#define GPIO_PUPDR_PUPDR0                0x3ul
-#define GPIO_MODER_MODER0                0x3ul
-#define __HAL_RCC_SYSCFG_CLK_ENABLE()
 
 
 void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
