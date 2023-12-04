@@ -259,9 +259,7 @@ HAL_StatusTypeDef GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   * @retval None
   */
 void GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin)
-{
-  return HAL_ERROR;
-}
+{}
 
 /**
   * @brief  EXTI line detection callbacks.
@@ -270,7 +268,6 @@ void GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin)
   */
 void GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  return HAL_ERROR;
 }
 
 /**
