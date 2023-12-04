@@ -260,12 +260,7 @@ HAL_StatusTypeDef GPIO_LockPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
   */
 void GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin)
 {
-  /* EXTI line interrupt detected */
-  // if(__HAL_GPIO_EXTI_GET_IT(GPIO_Pin) != RESET)
-  // {
-  //   __HAL_GPIO_EXTI_CLEAR_IT(GPIO_Pin);
-  //   HAL_GPIO_EXTI_Callback(GPIO_Pin);
-  // }
+  return HAL_ERROR;
 }
 
 /**
@@ -275,11 +270,7 @@ void GPIO_EXTI_IRQHandler(uint16_t GPIO_Pin)
   */
 void GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  /* Prevent unused argument(s) compilation warning */
-  // UNUSED(GPIO_Pin);
-  /* NOTE: This function Should not be modified, when the callback is needed,
-           the HAL_GPIO_EXTI_Callback could be implemented in the user file
-   */
+  return HAL_ERROR;
 }
 
 /**
